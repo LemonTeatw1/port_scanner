@@ -17,14 +17,10 @@ def scan_port(target_ip, port):
             with print_lock:
                 scanned_ports.add(port)
                 if result == 0:
-                    print(f"Port {port} is open")
+                    print(f"\033[92mPort {port} is open\033[0m")
                 else:
                     progress = len(scanned_ports) / total_ports * 100
-                    print(f"Progress: {progress:.1f}% ({len(scanned_ports)}/{total_ports})")
-                
-                if len(scanned_ports) == total_ports:
-                    print("\n\nScan completed!")
-                    sys.exit()
+                    print(f"Progress: {progress:.1f} % ({len(scanned_ports)}/{total_ports})", end='\r')
     except:
         pass
 
@@ -46,9 +42,10 @@ def main():
     print("-" * 50)
 
     try:
-        with ThreadPoolExecutor(max_workers=100) as executor:
-            for port in range(1, 65535):
+        with ThreadPoolExecutor(max_workers=1000) as executor:
+            for port in range(1, 65536):
                 executor.submit(scan_port, target_ip, port)
+        print("\n\nScan completed !")
                 
     except KeyboardInterrupt:
         print("\n[!] Scan terminated by user")
