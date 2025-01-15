@@ -17,10 +17,10 @@ def scan_port(target_ip, port):
             with print_lock:
                 scanned_ports.add(port)
                 if result == 0:
-                    print(f"\033[92mPort {port} is open\033[0m")
+                    print(f"Port {port} is open")
                 else:
                     progress = len(scanned_ports) / total_ports * 100
-                    print(f"Progress: {progress:.1f}% ({len(scanned_ports)}/{total_ports})", end='\r')
+                    print(f"Progress: {progress:.1f}% ({len(scanned_ports)}/{total_ports})")
                 
                 if len(scanned_ports) == total_ports:
                     print("\n\nScan completed!")
