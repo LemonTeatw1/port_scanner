@@ -28,7 +28,7 @@ def scan_port(target_ip, port):
 
 def main():
     
-    ascii_banner = pyfiglet.figlet_format("PORT SCANNER")
+    ascii_banner = pyfiglet.figlet_format("ICED \n PORT SCANNER")
     print(ascii_banner)
 
     target = input("Enter the target to scan (e.g., IP address or hostname): ")
